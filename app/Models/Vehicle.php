@@ -4,33 +4,30 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vehicle extends Model
 {
-    use HasFactory, HasUuids;
-
-    protected $primaryKey = 'uuid';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    use HasFactory;
 
     protected $fillable = [
-        'customer_uuid',
+        'customer_id',
         'plate',
         'brand',
         'model',
         'year'
     ];
 
-    public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'customer_uuid', 'uuid');
+        return $this->belongsTo(Customer::class);
     }
 
-    public function servicesOrders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function serviceOrders(): HasMany
     {
-        return $this->hasMany(ServiceOrder::class, 'vehicle_uuid', 'uuid');
+        return $this->hasMany(ServiceOrder::class);
     }
 }

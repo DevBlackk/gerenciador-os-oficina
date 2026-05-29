@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderItem extends Model
 {
-    use HasFactory, HasUuids;
-
-    protected $primaryKey = 'uuid';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    use HasFactory;
 
     protected $fillable = [
-        'service_order_uuid',
+        'service_order_id',
         'type',
         'description',
         'quantity',
@@ -29,8 +25,8 @@ class OrderItem extends Model
         'unit_price' => 'decimal:2',
     ];
 
-    public function servicesOrders(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function serviceOrder(): BelongsTo
     {
-        return $this->belongsTo(ServiceOrder::class, 'service_order_uuid', 'uuid');
+        return $this->belongsTo(ServiceOrder::class);
     }
 }

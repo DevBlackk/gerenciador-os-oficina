@@ -4,20 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ServiceOrder extends Model
 {
-    use HasFactory, HasUuids;
-
-    protected $primaryKey = 'uuid';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    use HasFactory;
 
     protected $fillable = [
-        'vehicle_uuid',
+        'vehicle_id',
         'status',
         'problem_description',
         'total_value'
@@ -27,13 +24,13 @@ class ServiceOrder extends Model
         'total_value' => 'decimal:2',
     ];
 
-    public function vehicle(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Vehicle::class, 'vehicle_uuid', 'uuid');
+        return $this->belongsTo(Vehicle::class);
     }
 
-    public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function items(): HasMany
     {
-        return $this->hasMany(OrderItem::class, 'service_order_uuid', 'uuid');
+        return $this->hasMany(OrderItem::class);
     }
 }

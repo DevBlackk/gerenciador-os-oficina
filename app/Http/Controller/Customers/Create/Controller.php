@@ -4,32 +4,20 @@ declare(strict_types=1);
 
 namespace App\Http\Controller\Customers\Create;
 
-use App\Http\Actions\Customer\CreateCustomer;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Domain\Customer\UseCase;
+use App\Http\Requests\Customer\Create\Request;
 
 class Controller extends \App\Http\Controller\Controller
 {
-    public function __invoke(Request $request, CreateCustomer $createCustomer): JsonResponse
+    public function __invoke(Request $request, UseCase $useCase): \Illuminate\Http\JsonResponse
     {
         try {
-            $data = $request->validate([
-                'name' => 'required',
-                'phone' => 'required',
-                'cpf' => 'required|unique:customers,cpf',
-            ]);
-
-            $customer = $createCustomer->execute($data);
+            $customerId = $useCase->execute($request->validated());
 
             return response()->json([
                 'message' => 'Customer created successfully',
-                'customer' => $customer,
+                'customer_id' => $customerId,
             ], 201);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $e->errors(),
-            ], 422);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while creating the customer',

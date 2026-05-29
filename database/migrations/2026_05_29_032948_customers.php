@@ -6,24 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('customers', static function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
-
+            $table->id();
             $table->string('name');
-
-            $table->string('phone')
-                ->nullable();
-
-            $table->string('cpf')
-                ->unique()
-                ->nullable();
-
+            $table->string('phone')->nullable();
+            $table->string('cpf')->unique()->nullable();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('customers');

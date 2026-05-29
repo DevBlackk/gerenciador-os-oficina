@@ -6,30 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('vehicles', static function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
-
-            $table->foreignUuid('customer_uuid')
-                ->references('uuid')
-                ->on('customers')
-                ->cascadeOnDelete();
-
-            $table->string('plate')
-                ->unique();
-
+            $table->id();
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->string('plate');
             $table->string('brand');
-
             $table->string('model');
-
-            $table->integer('year')
-                ->nullable();
-
+            $table->integer('year');
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('vehicles');
