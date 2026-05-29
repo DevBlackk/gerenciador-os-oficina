@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Customers\List;
+namespace App\Http\Controller\Customers\List;
 
-use App\Http\Actions\Customers\ListCustomer;
+use App\Http\Actions\Customer\ListCustomer;
 use Illuminate\Http\JsonResponse;
 
-class Controller extends \App\Http\Controllers\Controller
+class Controller extends \App\Http\Controller\Controller
 {
     public function __invoke(ListCustomer $getCustomers): JsonResponse
     {

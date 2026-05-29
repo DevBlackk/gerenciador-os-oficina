@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Customers\Create;
+namespace App\Http\Controller\Customers\Create;
 
-use App\Http\Actions\Customers\CreateCustomer;
+use App\Http\Actions\Customer\CreateCustomer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class Controller extends \App\Http\Controllers\Controller
+class Controller extends \App\Http\Controller\Controller
 {
     public function __invoke(Request $request, CreateCustomer $createCustomer): JsonResponse
     {

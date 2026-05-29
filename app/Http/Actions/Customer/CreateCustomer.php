@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Actions\Customers;
+namespace App\Http\Actions\Customer;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

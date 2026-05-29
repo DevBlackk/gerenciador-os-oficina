@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Customers\Delete;
+namespace App\Http\Controller\Customers\Delete;
 
 use Illuminate\Http\JsonResponse;
 
-class Controller extends \App\Http\Controllers\Controller
+class Controller extends \App\Http\Controller\Controller
 {
     public function __invoke(string $id): JsonResponse
     {
         try {
-            (new \App\Http\Actions\Customers\DeleteCostumer())->execute($id);
+            (new \App\Http\Actions\Customer\DeleteCostumer())->execute($id);
             return response()->json([
                 'message' => 'Customer deleted successfully'
             ], 200);
