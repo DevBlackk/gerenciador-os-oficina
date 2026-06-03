@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Customer\Entities;
+namespace App\Domain\Customer\Create\Entities;
 
 class Customer
 {

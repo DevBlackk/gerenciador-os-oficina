@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Customer\Gateways\Create;
+namespace App\Domain\Customer\Create\Gateways;
 
-use App\Domain\Customer\Entities\Customer;
+use App\Domain\Customer\Create\Entities\Customer;
 
 interface CreateCustomerGateway
 {

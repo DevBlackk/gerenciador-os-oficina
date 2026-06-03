@@ -12,8 +12,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
             $this->app->bind(
-                \App\Domain\Customer\Gateways\Create\CreateCustomerGateway::class,
-                \App\Infrastructure\Persistence\Adapters\Customer\Create\CreateCustomerAdapter::class
+                \App\Domain\Customer\Create\Gateways\CreateCustomerGateway::class,
+                \App\Infrastructure\Persistence\Adapters\Customer\CreateCustomerAdapter::class
             );
     }
 

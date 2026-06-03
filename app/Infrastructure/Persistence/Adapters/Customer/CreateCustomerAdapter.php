@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Adapters\Customer\Create;
+namespace App\Infrastructure\Persistence\Adapters\Customer;
 
-use App\Domain\Customer\Entities\Customer;
-use App\Domain\Customer\Gateways\Create\CreateCustomerGateway;
+use App\Domain\Customer\Create\Entities\Customer;
+use App\Domain\Customer\Create\Gateways\CreateCustomerGateway;
 use Illuminate\Support\Facades\DB;
 
 class CreateCustomerAdapter implements CreateCustomerGateway

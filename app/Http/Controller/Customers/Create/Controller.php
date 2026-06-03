@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controller\Customers\Create;
 
-use App\Domain\Customer\UseCase;
+use App\Domain\Customer\Create\UseCase;
 use App\Http\Requests\Customer\Create\Request;
 
 class Controller extends \App\Http\Controller\Controller
